@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://dcaqry2jfh0jy"]
+
+[ext_resource type="PackedScene" uid="uid://cy0o870pisfsm" path="res://enemy_1.tscn" id="1_8m2j1"]
+[ext_resource type="PackedScene" uid="uid://dsvbph1aqci8n" path="res://player.tscn" id="2_hcr3v"]
+
+[node name="world" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.270588, 0.807843, 0.631373, 1)
+
+[node name="enemy1" parent="." instance=ExtResource("1_8m2j1")]
+position = Vector2(856, 183)
+
+[node name="player" parent="." instance=ExtResource("2_hcr3v")]
+position = Vector2(255, 378)

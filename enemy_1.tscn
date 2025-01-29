@@ -1,0 +1,82 @@
+[gd_scene load_steps=10 format=3 uid="uid://cy0o870pisfsm"]
+
+[ext_resource type="Script" path="res://scripts/enemy_1.gd" id="1_5oig6"]
+[ext_resource type="Texture2D" uid="uid://ccmubk5tmmjit" path="res://icons/enemy1/big_demon_idle_anim_f0.png" id="1_qk7bh"]
+[ext_resource type="Texture2D" uid="uid://c0na1l4xek5oq" path="res://icons/enemy1/big_demon_idle_anim_f1.png" id="2_dq5hw"]
+[ext_resource type="Texture2D" uid="uid://7u1rw14b2rfo" path="res://icons/enemy1/big_demon_idle_anim_f2.png" id="3_lubvp"]
+[ext_resource type="Texture2D" uid="uid://pfnc0no4i8uf" path="res://icons/enemy1/big_demon_idle_anim_f3.png" id="4_vpnn6"]
+[ext_resource type="PackedScene" uid="uid://cj7a8bujyp65o" path="res://health.tscn" id="6_bkf0t"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1vgop"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_qk7bh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_dq5hw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_lubvp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_vpnn6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ftynm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u5qqd"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="enemy1" type="CharacterBody2D" node_paths=PackedStringArray("healthNode")]
+script = ExtResource("1_5oig6")
+healthNode = NodePath("health")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(52, 40.5)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_1vgop")
+autoplay = "default"
+frame_progress = 0.0524843
+speed_scale = 2.0
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ftynm")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+offset_left = 8.0
+offset_top = -55.0
+offset_right = 91.0
+offset_bottom = 175.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_u5qqd")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 150
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Enemy"
+
+[node name="ProgressBar" type="ProgressBar" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+value = 100.0
+show_percentage = false
+
+[node name="health" parent="." instance=ExtResource("6_bkf0t")]
+health_points = 100.0
+
+[node name="damage_pos" type="Node2D" parent="."]
+position = Vector2(116, 6)

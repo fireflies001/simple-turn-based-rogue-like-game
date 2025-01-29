@@ -1,0 +1,30 @@
+[
+	{
+		"name": "Fireball",
+		"damage": 20,
+		"cooldown": 2,
+		"desc": "A ball that is made of fire.",
+		"icon": "tile000.png"
+	},
+	{
+		"name": "Ice Bolt",
+		"damage": 10,
+		"cooldown": 2,
+		"desc": "Have you seen an electricity that is an ice? Now you will.",
+		"icon": "tile160.png"
+	},
+	{
+		"name": "Pebbles",
+		"damage": 5,
+		"cooldown": 2,
+		"desc": "Small stones that you throw.",
+		"icon": "tile382.png"
+	},
+	{
+		"name": "Shield",
+		"damage": 0,
+		"cooldown": 2,
+		"desc": "We doing this by hand!!",
+		"icon": "tile127.png"
+	}
+]
