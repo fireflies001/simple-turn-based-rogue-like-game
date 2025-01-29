@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://c0na1l4xek5oq" path="res://icons/enemy1/big_demon_idle_anim_f1.png" id="2_dq5hw"]
 [ext_resource type="Texture2D" uid="uid://7u1rw14b2rfo" path="res://icons/enemy1/big_demon_idle_anim_f2.png" id="3_lubvp"]
 [ext_resource type="Texture2D" uid="uid://pfnc0no4i8uf" path="res://icons/enemy1/big_demon_idle_anim_f3.png" id="4_vpnn6"]
-[ext_resource type="PackedScene" uid="uid://cj7a8bujyp65o" path="res://health.tscn" id="6_bkf0t"]
+[ext_resource type="PackedScene" uid="uid://cj7a8bujyp65o" path="res://scenes/health.tscn" id="6_bkf0t"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1vgop"]
 animations = [{

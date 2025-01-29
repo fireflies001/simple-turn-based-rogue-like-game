@@ -1,7 +1,7 @@
 extends Control
 
 
-const CARD_SCENE = preload("res://card.tscn")
+const CARD_SCENE = preload("res://scenes/card.tscn")
 @onready var hbox = $PanelContainer/MarginContainer/VBoxContainer/HBoxContainer
 const JSON_FILE_PATH: String = "res://scripts/skills.json"
 # Called when the node enters the scene tree for the first time.
@@ -18,4 +18,4 @@ func _ready():
 		
 
 func _on_button_pressed():
-	get_tree().change_scene_to_file("res://world.tscn")
+	get_tree().change_scene_to_file("res://scenes/world.tscn")

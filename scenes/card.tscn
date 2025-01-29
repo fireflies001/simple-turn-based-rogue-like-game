@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://yuqbgly1m7sr"]
 
-[ext_resource type="Script" path="res://scripts/card.gd" id="1_ft6fc"]
+[ext_resource type="Script" path="res://scripts/card.gd" id="1_4of0a"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l8ek0"]
 bg_color = Color(0.952941, 0.6, 0.239216, 1)
@@ -18,7 +18,7 @@ custom_minimum_size = Vector2(150, 200)
 offset_right = 250.0
 offset_bottom = 280.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_l8ek0")
-script = ExtResource("1_ft6fc")
+script = ExtResource("1_4of0a")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
