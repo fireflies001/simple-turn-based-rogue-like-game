@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://c1gbja3arjtxp"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8y64o"]
-load_path = "res://.godot/imported/04.png-801a60834239031a1f0f78f41842d7bd.ctex"
-
-[node name="health" type="Sprite2D"]
-texture = SubResource("CompressedTexture2D_8y64o")
-region_enabled = true
-region_rect = Rect2(50.4847, 5.89097, 42.7012, 5.54035)

@@ -3,6 +3,10 @@
 		"name": "Fireball",
 		"damage": 20,
 		"cooldown": 2,
+		"status_effect": "DEBUFF",
+		"status_dmg": 5,
+		"status_buff": 0,
+		"kind_of_status": "DOT",
 		"desc": "A ball that is made of fire.",
 		"icon": "tile000.png"
 	},
@@ -10,6 +14,10 @@
 		"name": "Ice Bolt",
 		"damage": 10,
 		"cooldown": 2,
+		"status_effect": "DEBUFF",
+		"status_dmg": 5,
+		"status_buff": 0,
+		"kind_of_status": "DOT",
 		"desc": "Have you seen an electricity that is an ice? Now you will.",
 		"icon": "tile160.png"
 	},
@@ -17,6 +25,10 @@
 		"name": "Pebbles",
 		"damage": 5,
 		"cooldown": 2,
+		"status_effect": "DEBUFF",
+		"status_dmg": 5,
+		"status_buff": 0,
+		"kind_of_status": "DOT",
 		"desc": "Small stones that you throw.",
 		"icon": "tile382.png"
 	},
@@ -24,7 +36,22 @@
 		"name": "Shield",
 		"damage": 0,
 		"cooldown": 2,
+		"status_effect": "DEBUFF",
+		"status_dmg": 5,
+		"status_buff": 0,
+		"kind_of_status": "DOT",
 		"desc": "We doing this by hand!!",
 		"icon": "tile127.png"
+	},
+	{
+		"name": "Heal",
+		"damage": 0,
+		"cooldown": 2,
+		"status_effect": "BUFF",
+		"status_dmg": 0,
+		"status_buff": 20,
+		"kind_of_status": "HEALING",
+		"desc": "We doing this by hand!!",
+		"icon": "tile369.png"
 	}
 ]

@@ -1,21 +1,73 @@
-[gd_scene load_steps=7 format=3 uid="uid://dcaqry2jfh0jy"]
+[gd_scene load_steps=14 format=3 uid="uid://dcaqry2jfh0jy"]
 
 [ext_resource type="PackedScene" uid="uid://cy0o870pisfsm" path="res://scenes/enemy_1.tscn" id="1_8m2j1"]
+[ext_resource type="Script" path="res://scenes/world.gd" id="1_wcub6"]
 [ext_resource type="PackedScene" uid="uid://dsvbph1aqci8n" path="res://scenes/player.tscn" id="2_hcr3v"]
 [ext_resource type="Texture2D" uid="uid://vqrv34q2w12j" path="res://icons/OVER.png" id="3_oumiq"]
 [ext_resource type="Texture2D" uid="uid://cm5jw5ybvscpv" path="res://icons/HP.png" id="4_7xkwk"]
 [ext_resource type="Texture2D" uid="uid://oi5x1xrsxf4a" path="res://icons/MANA.png" id="5_1qput"]
+[ext_resource type="PackedScene" uid="uid://bf0vis0msggay" path="res://scenes/popup_skill.tscn" id="7_e4vo0"]
+[ext_resource type="PackedScene" uid="uid://cj7a8bujyp65o" path="res://scenes/health.tscn" id="8_iyww7"]
+
+[sub_resource type="Animation" id="Animation_fwtkx"]
+resource_name = "skill_dialog"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-100, 304), Vector2(556, 304)]
+}
+
+[sub_resource type="Animation" id="Animation_yauw0"]
+resource_name = "skill_dialog_out"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(556, 304), Vector2(2000, 304)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ox2fw"]
+_data = {
+"skill_dialog": SubResource("Animation_fwtkx"),
+"skill_dialog_out": SubResource("Animation_yauw0")
+}
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5tvxa"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
-[node name="world" type="Control"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2006g"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="world" type="Control" node_paths=PackedStringArray("healthNode")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_wcub6")
+healthNode = NodePath("health")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../textContainer")
+libraries = {
+"": SubResource("AnimationLibrary_ox2fw")
+}
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -27,48 +79,43 @@ grow_vertical = 2
 color = Color(0.270588, 0.807843, 0.631373, 1)
 
 [node name="enemy1" parent="." instance=ExtResource("1_8m2j1")]
-position = Vector2(856, 183)
+position = Vector2(805, 183)
 
 [node name="player" parent="." instance=ExtResource("2_hcr3v")]
-position = Vector2(255, 378)
+position = Vector2(319, 385)
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="skillContainer" type="PanelContainer" parent="."]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
+anchors_preset = 12
 anchor_top = 1.0
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -243.0
-offset_top = -222.0
-offset_right = 23.0
-offset_bottom = -111.0
+offset_top = -124.0
 grow_horizontal = 2
 grow_vertical = 0
-scale = Vector2(2, 2)
 theme_override_styles/panel = SubResource("StyleBoxFlat_5tvxa")
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="skillContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="skillContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 10
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="skillContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="Label" type="Label" parent="skillContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 text = "HP"
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="TextureProgressBar" type="TextureProgressBar" parent="skillContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 4
 value = 100.0
@@ -79,7 +126,7 @@ stretch_margin_right = 200
 texture_under = ExtResource("3_oumiq")
 texture_progress = ExtResource("4_7xkwk")
 
-[node name="TextureProgressBar2" type="TextureProgressBar" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="TextureProgressBar2" type="TextureProgressBar" parent="skillContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
 value = 100.0
@@ -90,21 +137,33 @@ stretch_margin_right = 10
 texture_under = ExtResource("3_oumiq")
 texture_progress = ExtResource("5_1qput")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="skillContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "fire"
+[node name="popup_skill" parent="." instance=ExtResource("7_e4vo0")]
+layout_mode = 1
 
-[node name="Button2" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "water"
+[node name="health" parent="." instance=ExtResource("8_iyww7")]
 
-[node name="Button3" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "thunder"
+[node name="damage_pos" type="Node2D" parent="."]
+position = Vector2(275, 383)
 
-[node name="Button4" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "shield"
+[node name="textContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -676.0
+offset_top = -20.0
+offset_right = -635.997
+offset_bottom = 20.002
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2006g")
+
+[connection signal="attack_enemy" from="." to="enemy1" method="_on_world_attack_enemy"]
+[connection signal="popup_skill" from="." to="popup_skill" method="_on_world_popup_skill"]
+[connection signal="attack_player" from="enemy1" to="." method="_on_enemy_1_attack_player"]
+[connection signal="added_skill" from="popup_skill" to="." method="_on_popup_skill_added_skill"]
